@@ -173,13 +173,12 @@ class EspeakTTS(AbstractTTSEngine):
                          '-q',
                          '--phonout', pname,
                          phrase,
-                         &&,
-                        'mbrola -t 1.7 -e /opt/mbrola/fr4/fr4',
-                        pname,
-                        fname,
-                        &&,
-                        'aplay',
-                        fname]
+                         '&&',
+                         'mbrola',
+                         '-t', '1.7',
+                         '-e', '/opt/mbrola/fr4/fr4',
+                         pname,
+                         fname]
         cmd = [str(x) for x in cmd]
         self._logger.debug('Executing %s', ' '.join([pipes.quote(arg)
                                                      for arg in cmd]))
