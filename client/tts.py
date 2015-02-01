@@ -164,11 +164,23 @@ class EspeakTTS(AbstractTTSEngine):
         self._logger.debug("Saying '%s' with '%s'", phrase, self.SLUG)
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
             fname = f.name
+        with tempfile.NamedTemporaryFile(suffix='.pho', delete=False) as pho:
+            pname = pho.name
         cmd = ['espeak', '-v', self.voice,
                          '-p', self.pitch_adjustment,
                          '-s', self.words_per_minute,
                          '-w', fname,
-                         phrase]
+                         '--pho',
+                         '-q',
+                         '--phonout', pname
+                         phrase,
+                         ';',
+                        'mbrola -t 1.7 -e /opt/mbrola/fr4/fr4',
+                        pname,
+                        fname,
+                        ';',
+                        'aplay',
+                        fname]
         cmd = [str(x) for x in cmd]
         self._logger.debug('Executing %s', ' '.join([pipes.quote(arg)
                                                      for arg in cmd]))
