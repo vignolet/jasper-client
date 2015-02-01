@@ -169,7 +169,6 @@ class EspeakTTS(AbstractTTSEngine):
         cmd = ['espeak', '-v', self.voice,
                          '-p', self.pitch_adjustment,
                          '-s', self.words_per_minute,
-                         '-w', fname,
                          '--pho',
                          '-q',
                          '--phonout', pname,
