@@ -172,24 +172,33 @@ class EspeakTTS(AbstractTTSEngine):
                          '--pho',
                          '-q',
                          '--phonout', pname,
-                         phrase,
-                         '|',
-                         'mbrola',
+                         phrase]
+        cmd2 = ['mbrola',
                          '-t', '1.7',
                          '-e', '/opt/mbrola/fr4/fr4',
                          pname,
                          fname]
         cmd = [str(x) for x in cmd]
+        cmd2 = [str(x) for x in cmd2]
         self._logger.debug('Executing %s', ' '.join([pipes.quote(arg)
                                                      for arg in cmd]))
+        self._logger.debug('Executing %s', ' '.join([pipes.quote(arg)
+                                                     for arg in cmd2]))
         with tempfile.TemporaryFile() as f:
             subprocess.call(cmd, stdout=f, stderr=f)
             f.seek(0)
             output = f.read()
             if output:
                 self._logger.debug("Output was: '%s'", output)
+        with tempfile.TemporaryFile() as f:
+            subprocess.call(cmd2, stdout=f, stderr=f)
+            f.seek(0)
+            output = f.read()
+            if output:
+                self._logger.debug("Output was: '%s'", output)
         self.play(fname)
         os.remove(fname)
+        os.remove(pname)
 
 
 class FestivalTTS(AbstractTTSEngine):
