@@ -175,7 +175,7 @@ class EspeakTTS(AbstractTTSEngine):
                          phrase]
         cmd2 = ['mbrola',
                          '-t', '1.7',
-                         '-e', '/opt/mbrola/fr4/fr4',
+                         '-e', '/opt/mbrola/fr1/fr1',
                          pname,
                          fname]
         cmd = [str(x) for x in cmd]
