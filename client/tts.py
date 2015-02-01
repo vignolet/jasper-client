@@ -172,7 +172,7 @@ class EspeakTTS(AbstractTTSEngine):
                          '-w', fname,
                          '--pho',
                          '-q',
-                         '--phonout', pname
+                         '--phonout', pname,
                          phrase,
                          ';',
                         'mbrola -t 1.7 -e /opt/mbrola/fr4/fr4',
