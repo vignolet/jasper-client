@@ -173,11 +173,11 @@ class EspeakTTS(AbstractTTSEngine):
                          '-q',
                          '--phonout', pname,
                          phrase,
-                         ';',
+                         &&,
                         'mbrola -t 1.7 -e /opt/mbrola/fr4/fr4',
                         pname,
                         fname,
-                        ';',
+                        &&,
                         'aplay',
                         fname]
         cmd = [str(x) for x in cmd]
